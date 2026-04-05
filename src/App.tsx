@@ -4,7 +4,7 @@ import {
   Brain, Video, 
   Calendar, MessageSquare, Link, 
   Mic2, Video as VideoIcon, PenTool, LayoutGrid,
-  Zap, Globe, Shield, Cpu
+  Zap, Globe, Shield, Cpu, ChevronRight, Binary
 } from "lucide-react"
 
 import { ServiceCard } from "./components/ServiceCard"
@@ -15,7 +15,7 @@ export default function App() {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.1 }
+      transition: { staggerChildren: 0.15, delayChildren: 0.3 }
     }
   }
 
@@ -131,50 +131,64 @@ export default function App() {
   ]
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-50 selection:bg-purple-500/30 font-sans relative overflow-x-hidden">
+    <div className="min-h-screen bg-[#050505] text-neutral-50 selection:bg-purple-500/30 font-sans relative overflow-x-hidden selection:text-white">
+      {/* Premium Background Elements */}
       <FlowLines />
-      
-      {/* Dynamic Background */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[10%] left-[5%] w-[40%] h-[40%] rounded-full opacity-[0.07] bg-gradient-to-br from-indigo-500 to-purple-800 blur-[120px]" />
-        <div className="absolute bottom-[10%] right-[5%] w-[35%] h-[50%] rounded-full opacity-[0.07] bg-gradient-to-tl from-cyan-600 to-blue-800 blur-[100px]" />
-        <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] opacity-[0.03] border border-white/5 rounded-full scale-110" />
+        <div className="absolute top-[-10%] left-[-5%] w-[60%] h-[60%] rounded-full opacity-[0.08] bg-gradient-to-br from-indigo-500/50 via-purple-500/50 to-blue-800/50 blur-[130px]" />
+        <div className="absolute bottom-[0%] right-[-5%] w-[50%] h-[70%] rounded-full opacity-[0.06] bg-gradient-to-tl from-cyan-600/50 to-emerald-800/50 blur-[120px]" />
+        
+        {/* Subtle Grid Pattern Overlay */}
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] contrast-150" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
       </div>
 
       <motion.div
-        className="max-w-7xl mx-auto px-6 py-16 md:py-24 relative z-10"
+        className="max-w-7xl mx-auto px-6 py-20 md:py-32 relative z-10"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        <header className="text-center mb-24 space-y-6">
+        <header className="text-center mb-32 space-y-8 relative">
           <motion.div 
-             initial={{ opacity: 0, y: 20 }}
-             animate={{ opacity: 1, y: 0 }}
-             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm text-indigo-300 font-medium tracking-wide"
+             initial={{ opacity: 0, scale: 0.9, y: 10 }}
+             animate={{ opacity: 1, scale: 1, y: 0 }}
+             transition={{ duration: 0.5 }}
+             className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/[0.03] border border-white/10 text-xs text-indigo-300 font-bold tracking-[0.2em] shadow-xl backdrop-blur-md uppercase"
           >
-            <Shield className="w-4 h-4" /> Comprehensive System Architecture
+            <Shield className="w-3.5 h-3.5 text-indigo-400" /> System Architecture Overview
           </motion.div>
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight bg-gradient-to-br from-white via-white to-neutral-500 bg-clip-text text-transparent">
-            The HackNU Super-App
-          </h1>
-          <p className="text-xl text-neutral-400 max-w-3xl mx-auto font-light leading-relaxed">
-            Discover the 12+ interconnected services that make our collaborative canvas faster, smarter, and more integrated than anything else.
-          </p>
+          
+          <div className="space-y-4">
+            <h1 className="text-6xl md:text-8xl font-black tracking-tighter bg-gradient-to-b from-white via-white to-neutral-500/40 bg-clip-text text-transparent drop-shadow-sm leading-[1.1]">
+              The HackNU <span className="text-indigo-400">Super-App</span>
+            </h1>
+            <p className="text-lg md:text-xl text-neutral-400 max-w-2xl mx-auto font-medium leading-relaxed tracking-tight">
+              An edge-first, intelligence-native ecosystem built for deep collaboration and real-time world class interactions.
+            </p>
+          </div>
+
+          <div className="flex items-center justify-center gap-4 pt-4">
+             <div className="h-px w-12 bg-gradient-to-r from-transparent to-white/10" />
+             <Binary className="w-5 h-5 text-neutral-600" />
+             <div className="h-px w-12 bg-gradient-to-l from-transparent to-white/10" />
+          </div>
         </header>
 
-        <div className="space-y-32">
+        <div className="space-y-40">
           {sections.map((section, idx) => (
-            <section key={idx} className="relative">
-              <div className="flex items-center gap-4 mb-10">
-                <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-neutral-400">
-                  <section.icon className="w-5 h-5" />
+            <section key={idx} className="relative group/section">
+              <div className="flex items-center gap-5 mb-14">
+                <div className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-white shadow-2xl group-hover/section:border-indigo-500/30 transition-colors duration-500">
+                  <section.icon className="w-6 h-6 text-neutral-300 group-hover/section:text-indigo-400 transition-colors duration-500" />
                 </div>
-                <h2 className="text-2xl font-semibold text-white tracking-tight">{section.title}</h2>
-                <div className="h-px flex-grow bg-gradient-to-r from-white/10 to-transparent ml-4" />
+                <div className="space-y-1">
+                  <h2 className="text-3xl font-black text-white tracking-tighter uppercase">{section.title}</h2>
+                  <div className="h-[2px] w-12 bg-indigo-500/40 group-hover/section:w-24 transition-all duration-700" />
+                </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {section.services.map((service, sIdx) => (
                   <ServiceCard 
                     key={sIdx}
@@ -186,11 +200,31 @@ export default function App() {
           ))}
         </div>
 
-        <footer className="mt-32 pt-16 border-t border-white/5 text-center">
-           <p className="text-neutral-500 text-sm font-mono tracking-tighter uppercase">
-             HackNU 2026 // World Class Collaboration // Edge-First Architecture
-           </p>
+        <footer className="mt-40 py-20 border-t border-white/[0.03] relative">
+           <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-px h-px w-32 bg-indigo-500/50" />
+           
+           <div className="flex flex-col items-center gap-8">
+             <div className="flex gap-12 font-mono text-[10px] text-neutral-600 font-bold uppercase tracking-[0.25em]">
+                <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-emerald-500/50" /> Latency: 50ms avg</span>
+                <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-500/50" /> Uptime: 99.99%</span>
+                <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-purple-500/50" /> Nodes: 300+ Edge</span>
+             </div>
+             
+             <p className="text-neutral-500 text-xs font-mono tracking-tighter uppercase opacity-40 hover:opacity-100 transition-opacity">
+               Built for HackNU 2026 // Distributed World Class Collaboration // Enterprise Neural Network
+             </p>
+           </div>
         </footer>
+      </motion.div>
+
+      {/* Futuristic Scroll Indicator */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.3 }}
+        className="fixed left-8 bottom-8 hidden lg:flex flex-col items-center gap-4 z-50"
+      >
+        <div className="w-px h-24 bg-gradient-to-t from-white/20 to-transparent" />
+        <span className="text-[9px] font-bold text-white uppercase tracking-[0.4em] [writing-mode:vertical-lr] rotate-180">Protocol Scroll</span>
       </motion.div>
     </div>
   )
