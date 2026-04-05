@@ -4,7 +4,7 @@ import {
   Brain, Video, 
   Calendar, MessageSquare, Link, 
   Mic2, Video as VideoIcon, PenTool, LayoutGrid,
-  Zap, Globe, Shield, Cpu, ChevronRight, Binary
+  Zap, Globe, Shield, Cpu
 } from "lucide-react"
 
 import { ServiceCard } from "./components/ServiceCard"
@@ -170,7 +170,7 @@ export default function App() {
 
           <div className="flex items-center justify-center gap-4 pt-4">
              <div className="h-px w-12 bg-gradient-to-r from-transparent to-white/10" />
-             <Binary className="w-5 h-5 text-neutral-600" />
+             <Cpu className="w-5 h-5 text-neutral-600" />
              <div className="h-px w-12 bg-gradient-to-l from-transparent to-white/10" />
           </div>
         </header>
